@@ -4,7 +4,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## Table of Contents
 
-	1. Description
+  1. Description
   2. What this project demonstrates about me
   3. How to run this project locally
   4. How to build this project
