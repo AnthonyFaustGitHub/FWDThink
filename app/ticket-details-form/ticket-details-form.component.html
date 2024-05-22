@@ -1,0 +1,96 @@
+<div class="container ticket-details-form">
+    
+    <div class="col-sm-12">
+        <h2>Ticket Details</h2>        
+    </div>
+    
+    <div class="container">
+
+        <form [formGroup]="ticketDetailsForm">
+
+            <div class="row">
+
+                <div class="col-sm-12 col-md-6 col">
+                    <label>Category</label>
+
+                    <mat-form-field>
+                        <mat-select formControlName="category" (selectionChange)="changeCategory($event)" required>
+                        @for (category of tickets; track category.id) {
+                            <mat-option [value]="category">{{ category.category }}</mat-option>
+                        }
+                        </mat-select>
+
+                        <mat-error>
+                            <strong>This field is required</strong>
+                        </mat-error>
+                    </mat-form-field>
+
+                    <label for="subject">Subject</label>
+
+                    <mat-form-field>
+                        <input formControlName="subject" matInput>
+
+                        <mat-error>
+                            <strong>This field is required</strong>
+                        </mat-error>
+                    </mat-form-field> 
+
+                    <label>Description</label>
+
+                    <mat-form-field>
+                        <textarea formControlName="description" matInput></textarea>
+
+                        <mat-error>
+                            <strong>This field is required</strong>
+                        </mat-error>
+                    </mat-form-field>
+
+                </div>
+
+                <div class="col-sm-12 col-md-6 col">  
+                    <label>Type</label>               
+                    @for (type of types; track type.id) {
+                        <mat-checkbox
+                              formArrayName="types"
+                              [value]="type" 
+                                      [checked]=false
+                              class="example-margin d-block test"
+                              (change)="changeType($event)">
+                        {{ type.type }}
+                        </mat-checkbox>
+                    }                 
+                </div>
+
+                <div class="col-sm-12 col-md-6 ticket-files-documents">
+                    <h3>Ticket Files &amp; Documents</h3>
+                    @for (file of listOfTicketFiles; track file) {
+                        <div class="col-sm-12 d-inline-block">
+                            <div class="float-start col-sm-4 col-md-5 col-lg-4">
+                                <p>{{ file }}</p>
+                            </div>
+                            <div class="float-start col-sm-8 col-md-7 col-lg-8">
+                                <mat-icon (click)="deleteTicketFile(file)" class="delete-icon">delete</mat-icon>
+                            </div>
+                        </div>
+                    }
+                    <button mat-flat-button (click)="attachFile()" class="attach-file-button" color="primary">Attach File</button>
+                </div>
+
+                <div class="col-sm-12">  
+                    <div class="row">
+                        <div class="col-md-2 offset-md-8">                     
+                            <button mat-stroked-button (click)="clearForm()" color="primary" mat-button>Reset</button>                 
+                        </div>
+                        <div class="col-md-2">                   
+                            <button mat-flat-button (click)="submitTicket()" color="primary">Submit</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>

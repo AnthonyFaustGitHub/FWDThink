@@ -1,0 +1,57 @@
+<div class="container">
+    <button mat-flat-button (click)="createAnotherTicket()" class="create-another-ticket-button" color="primary">Create Another Ticket</button> 
+</div>
+
+<div class="container ticket-details-summary">
+
+    <div class="col-sm-12">
+        <h2>Ticket Details Summary</h2>        
+    </div>
+            
+    <div class="row align-items-end">
+             
+        <div class="col-sm-12 col-md-6 col">
+            <label>Category</label>
+
+            <div>
+                <p>{{ this.selectedCategory.category }}</p>
+            </div>
+            
+            <label for="subject">Subject</label>
+
+            <div>
+                <p>{{ tickets.subject }}</p>
+            </div>        
+
+            <label>Description</label>
+            
+            <div>
+                <p>{{ tickets.description }}</p>
+            </div>
+            
+            <label>Ticket Files &amp; Documents</label>
+            
+            <div class="files-wrapper">
+                <ul>
+                    @for (file of ticketFiles; track file) {
+                        <li>{{ file }}</li>
+                    }
+                </ul>
+            </div>
+        </div>
+        
+        <div class="col-sm-12 col-md-6 col">
+            <label>Type</label>
+            
+            <div class="types-wrapper">
+                @for (type of types; track type) {
+                <div class="types">
+                    <mat-chip>{{ type }}</mat-chip>
+                </div>
+                }
+            </div>
+        </div>
+             
+    </div>
+
+</div>
